@@ -67,6 +67,17 @@
   padding: 10px 50px 0 100px;
   display: flex;
   background: rgb(222, 233, 254);
+  &__plus {
+    height: 50px;
+    width: 50px;
+    margin-left: -50px;
+    margin-top: 12px;
+    &--icon {
+      color: #cccccc;
+      line-height: 50px;
+      font-size: 20px;
+    }
+  }
   &--text {
     height: 50px;
     width: 100%;

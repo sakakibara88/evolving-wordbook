@@ -1,10 +1,5 @@
 .side-bar
-  .side-bar__index
-    = link_to "", class: "side-bar__index--link" do
-      題目
-  .side-bar__index
-    = link_to "", class: "side-bar__index--link" do
-      題目
-  .side-bar__index
-    = link_to "", class: "side-bar__index--link" do
-      題目
+  - @titles.each do |title|
+    .side-bar__index
+      = link_to title_items_path(title), class: "side-bar__index--link" do
+        = title.titl

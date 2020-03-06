@@ -9,7 +9,8 @@
   %body
     .header
       .header__name
-        Evolving Wlrd Book
+        =link_to root_path, class: "header__name--link" do
+          Evolving Wlrd Book
       .header__users
         - if user_signed_in?
           .header__users__login
