@@ -11,10 +11,18 @@
       .header__name
         Evolving Wlrd Book
       .header__users
-        .header__users__login
-          = link_to "", class: "header__users__login--link" do
-            ログイン
-        .header__users__new
-          = link_to "", class: "header__users__new--link" do
-            新規登録
+        - if user_signed_in?
+          .header__users__login
+            .header__users__login--link
+              = current_user.name
+          .header__users__new
+            = link_to destroy_user_session_path, method: :delete, class: "header__users__new--link" do
+              ログアウト
+        - else
+          .header__users__login
+            = link_to new_user_session_path, class: "header__users__login--link" do
+              ログイン
+          .header__users__new
+            = link_to new_user_registration_path, class: "header__users__new--link" do
+              新規登録
     = yield
