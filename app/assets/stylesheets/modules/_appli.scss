@@ -1,0 +1,34 @@
+.header {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 65px;
+  background: linear-gradient(#93FFAB, #CBFFD3);
+  line-height: 65px;
+  &__name {
+    margin-left: 20px;
+    font-size: 30px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  &__users {
+    display: flex;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 18px;
+    &__login {
+      margin-right: 20px;
+      &--link {
+        color: #000077;
+        text-decoration: none;
+      }
+    }
+    &__new {
+      margin-right: 40px;
+      &--link {
+        color: #000077;
+        text-decoration: none;
+      }
+    }
+  }
+}
+

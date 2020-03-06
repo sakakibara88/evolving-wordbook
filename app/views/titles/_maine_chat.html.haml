@@ -1,0 +1,25 @@
+.maine
+  .item
+    .itme__icons
+      = link_to "" do
+        = icon('fas', 'angle-left', class: "item__icons--left")
+    .item__content
+      ElasticIP
+      1234567890
+      1234567890
+    .itme__icons
+      = link_to "" do
+        = icon('fas', 'angle-right', class: "item__icons--right")
+        
+  .content
+    解説
+    .content__comment
+      .content__comment__text
+        AWSから割り振られた固定のパブリックIPアドレスのこと
+      .content__comment__icon
+        =link_to "#" do
+          = icon('fas', 'heart', class: "content__comment__icon--hart")
+
+  .footer
+    %textarea.footer--text(name="take" cols="28" rows="3")
+    %input.footer--submit{type: 'submit', value: '享受'}
