@@ -1,4 +1,5 @@
 class TitlesController < ApplicationController
   def index
-  end
+    @titles = Title.order('created_at ASC')
+  end 
 end

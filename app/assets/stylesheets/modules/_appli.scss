@@ -13,6 +13,10 @@
     margin-left: 20px;
     font-size: 30px;
     font-family: Georgia, 'Times New Roman', Times, serif;
+    &--link {
+      text-decoration: none;
+      color: black;
+    }
   }
   &__users {
     display: flex;
