@@ -1,0 +1,23 @@
+.side-bar {
+  overflow: scroll;
+  margin-top: 65px;
+  position: fixed;
+  width: 225px;
+  height: calc(100vh - 65px);
+  float: left;
+  background-color: #CBFFD3;
+  padding: 20px 20px;
+  &__index {
+    height: 60px;
+    width: 175px;
+    font-size: 20px;
+    margin-bottom: 10px;
+    background-color: rgb(218, 252, 222);
+    line-height: 60px;
+    &--link {
+      margin-left: 10px;
+      color: #232336;
+      text-decoration: none;
+    }
+  }
+}
