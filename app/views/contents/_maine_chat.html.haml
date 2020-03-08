@@ -1,0 +1,31 @@
+.maine
+  .item
+    .itme__icons
+      - unless @item == @items.first
+        = link_to title_item_path(@title, @item) do
+          = icon('fas', 'angle-left', class: "item__icons--left")
+    .item__content
+      = @item.item
+    .itme__icons
+      - unless @item == @items.last
+        = link_to title_items_path do
+          = icon('fas', 'angle-right', class: "item__icons--right")
+        
+  .content
+    解説
+    - @contents.each do |content|
+      .content__comment
+        .content__comment__text
+          = content.content
+        .content__comment__icon
+          =link_to "" do
+            = icon('fas', 'heart', class: "content__comment__icon--hart")
+
+  .footer
+    .footer__plus
+      = link_to new_title_item_path do
+        = icon('fas', 'plus', class: "footer__plus--icon")
+    .footer__textbox
+      = form_for [@title, @item, @content], class: "footer__form" do |f|
+        = f.text_field :content, class: "footer--text", cols: 10, rows: 3
+        = f.submit "享受", class: "footer--submit"
