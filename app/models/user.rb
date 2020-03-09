@@ -5,6 +5,12 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :items
-  belongs_to :content
+  has_many :contents
+  has_many :goods
+  has_many :good_contents, through: :goods, source: :content
   validates :name, presence: true
+
+  def already_good?(content)
+    self.goods.exists?(content_id: content.id)
+  end
 end

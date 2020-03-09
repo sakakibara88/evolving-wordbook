@@ -6,6 +6,9 @@ class ContentsController < ApplicationController
     @content  = Content.new
     @titles   = Title.all
     @items    = Item.where(items: {title_id: [@title]})
+    @good     = Good.new
+    @goods    = Good.where(content_id: @contents)
+    # binding.pry
   end
 
   def create
