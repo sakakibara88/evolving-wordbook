@@ -18,9 +18,14 @@
         .content__comment__text
           = content.content
         .content__comment__icon
-          =link_to "" do
-            = icon('fas', 'heart', class: "content__comment__icon--hart")
-
+          - if current_user.already_good?(content)
+            = link_to title_item_content_good_path(@title, @item, content, content), method: :delete do
+              = icon('fas', 'heart', class: "content__comment__icon--hart")
+            = @goods.where(content_id: content).count
+          - else
+            = link_to title_item_content_goods_path(@title, @item, content), method: :post do
+              = icon('fas', 'heart', class: "content__comment__icon--hart")
+            = @goods.where(content_id: content).count
   .footer
     .footer__plus
       = link_to new_title_item_path do

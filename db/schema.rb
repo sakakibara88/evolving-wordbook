@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200308125708) do
+ActiveRecord::Schema.define(version: 20200309015620) do
 
   create_table "contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content",    limit: 50, default: "", null: false
@@ -20,6 +20,15 @@ ActiveRecord::Schema.define(version: 20200308125708) do
     t.datetime "updated_at",                         null: false
     t.index ["item_id"], name: "index_contents_on_item_id", using: :btree
     t.index ["user_id"], name: "index_contents_on_user_id", using: :btree
+  end
+
+  create_table "goods", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "content_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["content_id"], name: "index_goods_on_content_id", using: :btree
+    t.index ["user_id"], name: "index_goods_on_user_id", using: :btree
   end
 
   create_table "items", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -56,6 +65,8 @@ ActiveRecord::Schema.define(version: 20200308125708) do
 
   add_foreign_key "contents", "items"
   add_foreign_key "contents", "users"
+  add_foreign_key "goods", "contents"
+  add_foreign_key "goods", "users"
   add_foreign_key "items", "titles"
   add_foreign_key "items", "users"
 end
