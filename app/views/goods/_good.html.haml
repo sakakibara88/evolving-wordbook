@@ -1,0 +1,33 @@
+
+-# - if user_signed_in?
+-#   - if current_user.already_good?(content)
+-#     = link_to title_item_content_good_path(title, item_id, content, content), method: :delete, remote: true do
+-#       = icon('fas', 'heart', class: "content__comment__icon--hart-red")
+-#   - else
+-#     = link_to title_item_content_goods_path(title, item_id, content), method: :post, remote: true do
+-#       = icon('fas', 'heart', class: "content__comment__icon--hart")
+-# - else
+-#   = icon('fas', 'heart', class: "content__comment__icon--hart")
+
+.content
+  解説
+  - contents.each do |content|
+    .content__comment
+      .content__comment__text
+        = content.content
+      .content__comment__icon
+        - if user_signed_in?
+          - if current_user.already_good?(content)
+            = link_to title_item_content_good_path(title, item_id, content, content), method: :delete, remote: true do
+              = icon('fas', 'heart', class: "content__comment__icon--hart-red")
+            .content__comment__icon__count
+              = goods.where(content_id: content).count
+          - else
+            = link_to title_item_content_goods_path(title, item_id, content), method: :post, remote: true do
+              = icon('fas', 'heart', class: "content__comment__icon--hart")
+            .content__comment__icon__count
+              = goods.where(content_id: content).count
+        - else
+          = icon('fas', 'heart', class: "content__comment__icon--hart")
+          .content__comment__icon__count
+            = goods.where(content_id: content).count
