@@ -3,22 +3,25 @@ class GoodsController < ApplicationController
 
   def create
     @good = current_user.goods.create(content_id: params[:content_id])
-    # redirect_back(fallback_location: root_path)
-    # @contents = @item.contents.includes(:user)
-    @content  = @good
+    @contents = @item.contents.includes(:user)
+    @items    = Item.where(items: {title_id: [@title]})
+    @goods    = Good.where(content_id: @contents)
+
+    # @content  = Content.new
     # @titles   = Title.all
-    # @items    = Item.where(items: {title_id: [@title]})
+    # @good     = Good.new
   end
 
   def destroy
     @good = Good.find_by(content_id: params[:content_id], user_id: current_user.id)
     @good.destroy
-    # @contents = @item.contents.includes(:user)
-    @content  = @good
-    # @titles   = Title.all
     @contents = @item.contents.includes(:user)
     @items    = Item.where(items: {title_id: [@title]})
     @goods    = Good.where(content_id: @contents)
+
+    @content  = Content.new
+    @titles   = Title.all
+    @good     = Good.new
   end
   
   private
