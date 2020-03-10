@@ -1,0 +1,10 @@
+
+- if user_signed_in?
+  - if current_user.already_good?(content)
+    = link_to title_item_content_good_path(title, item_id, content, content), method: :delete, remote: true do
+      = icon('fas', 'heart', class: "content__comment__icon--hart-red")
+  - else
+    = link_to title_item_content_goods_path(title, item_id, content), method: :post, remote: true do
+      = icon('fas', 'heart', class: "content__comment__icon--hart")
+- else
+  = icon('fas', 'heart', class: "content__comment__icon--hart")
