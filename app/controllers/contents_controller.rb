@@ -2,12 +2,28 @@ class ContentsController < ApplicationController
   before_action :set_title 
   
   def index
-    @contents = @item.contents.includes(:user)
-    @content  = Content.new
-    @titles   = Title.all
-    @items    = Item.where(items: {title_id: [@title]})
-    @good     = Good.new
-    @goods    = Good.where(content_id: @contents)
+    @content         = Content.new
+    @titles          = Title.all
+    @items           = Item.where(items: {title_id: [@title]})
+    @contents        = @item.contents.includes(:user).joins(:goods).group(:content_id).order('count(content_id) DESC')
+    @contents_ungood = @item.contents.includes(:user)
+    @goods           = Good.where(content_id: @contents)
+    
+
+    # @contents = Good.where(user_id: current_user.id)
+
+    # binding.pry
+    # @goods           = @contents.select{ |good| good.user_id == current_user.id }
+    # @contents.each do |content|
+    #   @goods = @goods.select(user_id: content).pluck(:user_id)
+    #   @goods.each do |good|
+    #     if good == current_user.id
+
+        # binding.pry
+    #     end
+    #   end
+    # end
+
   end
 
   def create
