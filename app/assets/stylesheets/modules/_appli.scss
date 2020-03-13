@@ -22,13 +22,16 @@
     width: 300px;
     color: #656565;
     &__form {
-      display: flex;
+      margin-top: 10px;
+      width: 100%;
+      height: 30px;
     }
     &__form--text {
       padding-left: 10px;
       margin-left: 10px;
       width: 100%;
       height: 30px;
+      padding-top: 2px;
     }
   }
   &__users {
