@@ -1,5 +1,5 @@
 $(function(){
-let search_list = $("#item-search-list");
+  let search_list = $("#item-search-list");
 
   function appendItem(item) {
     let html = `<div class = "list">
