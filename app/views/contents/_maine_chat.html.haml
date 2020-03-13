@@ -12,7 +12,7 @@
           = icon('fas', 'angle-right', class: "item__icons--right")
 
   .contentss
-    = render partial: 'goods/good', locals: { contents: @contents, title: @title, item_id: @item, goods: @goods, contents_ungood: @contents_ungood}
+    -# = render partial: 'goods/good', locals: { contents: @contents, title: @title, item_id: @item, goods: @goods, contents_ungood: @contents_ungood}
     
   .footer
     - if user_signed_in?
