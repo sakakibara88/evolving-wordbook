@@ -12,29 +12,30 @@ class ItemsController < ApplicationController
       else
         redirect_to root_path
       end
-    elsif @@user[request.remote_ip] == nil                          #IPアドレスの登録がなければ！
-      @@user[request.remote_ip][:page]  = 0
-      @@user[request.remote_ip][:title] = @title
+      # request.remote_ip
+    elsif @@user[current_user.id] == nil                          #IPアドレスの登録がなければ！
+      @@user[current_user.id][:page]  = 0
+      @@user[current_user.id][:title] = @title
       @@users << @@user
-      @item                             = @@user[request.remote_ip][:page]
+      @item                             = @@user[current_user.id][:page]
       redirect_to title_item_contents_path(@title, @item)
-    elsif @@user[request.remote_ip][:title] == @title then          #タイトルが同じなら
+    elsif @@user[current_user.id][:title] == @title then          #タイトルが同じなら
 
-      if @items[@@user[request.remote_ip][:page] + 1]  == nil then  ##次の項目がなければ
-        @@user[request.remote_ip][:page]  = 0
-        @@user[request.remote_ip][:title] = @title
-        @item                             = @items[@@user[request.remote_ip][:page]]
+      if @items[@@user[current_user.id][:page] + 1]  == nil then  ##次の項目がなければ
+        @@user[current_user.id][:page]  = 0
+        @@user[current_user.id][:title] = @title
+        @item                             = @items[@@user[current_user.id][:page]]
         redirect_to title_item_contents_path(@title, @item)
       else
-        @@user[request.remote_ip][:page] += 1                       ##次の項目へ
-        @item  = @items[@@user[request.remote_ip][:page]]
+        @@user[current_user.id][:page] += 1                       ##次の項目へ
+        @item  = @items[@@user[current_user.id][:page]]
         redirect_to title_item_contents_path(@title, @item)
       end
       
     else
-      @@user[request.remote_ip][:page]  = 0                        #別の題目を選んだ時、最初の項目へ
-      @@user[request.remote_ip][:title] = @title
-      @item   = @items[@@user[request.remote_ip][:page]]
+      @@user[current_user.id][:page]  = 0                        #別の題目を選んだ時、最初の項目へ
+      @@user[current_user.id][:title] = @title
+      @item   = @items[@@user[current_user.id][:page]]
       redirect_to title_item_contents_path(@title, @item)
     end
   end 
