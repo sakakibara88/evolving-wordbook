@@ -3,3 +3,9 @@
     .side-bar__index
       = link_to title_items_path(title), class: "side-bar__index--link" do
         = title.titl
+
+  - if user_signed_in?
+    - if current_user.id.to_s == "1"
+      .side-bar__index
+        = link_to new_title_path do
+          = icon('fas', 'plus', class: "side-bar__index--new")

@@ -1,8 +1,9 @@
 .content
-  解説
+  .content__text
+    解説
   - if user_signed_in?
     - contents.each do |content|
-      - if current_user.already_good?(content)           #良いねしていれば
+      - if current_user.already_good?(content)           #自身がGood!していれば
         .content__comment
           .content__comment__text
             = content.content
@@ -14,7 +15,7 @@
 
   - if user_signed_in?
     - contents.each do |content|
-      - unless current_user.already_good?(content)       #良いねしていないなら
+      - unless current_user.already_good?(content)       #unGood!
         .content__comment
           .content__comment__text
             = content.content
@@ -34,7 +35,7 @@
             = goods.where(content_id: content).count
 
   - contents_ungood.each do |content|
-    -if goods.where(content_id: content).count == 0
+    -if goods.where(content_id: content).count == 0          #Good!数が0なら
       .content__comment
         .content__comment__text
           = content.content

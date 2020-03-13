@@ -12,6 +12,12 @@
         =link_to root_path, class: "header__name--link" do
           Evolving Word Book
       
+      .header__search
+        .header__search__form
+          = form_for search_items_path, class: "header__search__for" do |f|
+            = f.text_field :item, class: "header__search__form--text", cols: 10, rows: 3, placeholder: "検索ワード"
+        #item-search-list
+
       .header__users
         - if user_signed_in?
           .header__users__login

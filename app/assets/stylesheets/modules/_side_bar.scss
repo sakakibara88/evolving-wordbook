@@ -7,6 +7,9 @@
   float: left;
   background-color: #CBFFD3;
   padding: 20px 20px;
+  &__index:hover{
+    opacity: 0.6;
+  }
   &__index {
     height: 60px;
     width: 175px;
@@ -18,6 +21,10 @@
       margin-left: 10px;
       color: #232336;
       text-decoration: none;
+    }
+    &--new {
+      margin-left: 79px;
+      color: #cccccc;
     }
   }
 }
