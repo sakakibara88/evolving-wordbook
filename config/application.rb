@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module EvolvingWordbook
   class Application < Rails::Application
+    config.assets.initialize_on_precompile = false
     config.generators do |g|
       g.stylesheets false
       g.javascripts false

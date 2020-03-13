@@ -48,7 +48,6 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
-  database: evolving-wordbook_production
-  username: evolving-wordbook
-  password: <%= ENV['EVOLVING-WORDBOOK_DATABASE_PASSWORD'] %>
+  adapter: postgresql
+  database: db_production 
+
