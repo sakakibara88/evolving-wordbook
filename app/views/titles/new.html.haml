@@ -1,0 +1,8 @@
+.newbody
+  .new
+    .titlname
+      タイトル作成
+    = form_for [@title],class: "message--form" do |f|
+      = f.text_area :titl, cols: "10", rows: "3", class: "textbox"
+      .submit
+        =f.submit "設立", class: "submit--btn"

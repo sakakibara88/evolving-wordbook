@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :set_title 
+  before_action :set_title, except: :search
   before_action :set_items, only: [:index, :show]
 
   @@users = []
@@ -7,7 +7,11 @@ class ItemsController < ApplicationController
   
   def index
     if @items == [] then                                            #項目に何もなければ！
-      redirect_to new_title_item_path(@title)
+      if user_signed_in?
+        redirect_to new_title_item_path(@title)
+      else
+        redirect_to root_path
+      end
     elsif @@user[request.remote_ip] == nil                          #IPアドレスの登録がなければ！
       @@user[request.remote_ip][:page]  = 0
       @@user[request.remote_ip][:title] = @title
@@ -40,7 +44,7 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @@user[request.remote_ip][:page] -= 1             #前の項目へ
+    @@user[request.remote_ip][:page] -= 1                          #前の項目へ
     @item  = @items[@@user[request.remote_ip][:page]]
     redirect_to title_item_contents_path(@title, @item)
   end
@@ -49,6 +53,23 @@ class ItemsController < ApplicationController
     @item = @title.items.new(item_params)
     @item.save
     redirect_to title_item_contents_path(@title, @item)
+  end
+
+  def search
+    if params[:keyup] == ""
+      @search = "not-search"
+      respond_to do |f|
+        f.html
+        f.json
+      end
+    else
+      @search = Item.search(params[:keyup])
+      # binding.pry
+      respond_to do |f|
+        f.html
+        f.json
+      end
+    end
   end
 
   private

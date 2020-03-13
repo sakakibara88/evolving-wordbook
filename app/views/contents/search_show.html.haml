@@ -1,0 +1,21 @@
+.wrapper
+  = render "titles/side_bar"
+.maine
+  .item
+    .itme__icons
+    .item__content
+      = @item.item
+    .itme__icons
+
+  .contentss
+    = render partial: 'goods/good', locals: { contents: @contents, title: @title, item_id: @item, goods: @goods, contents_ungood: @contents_ungood}
+    
+  .footer
+    - if user_signed_in?
+      .footer__plus
+        = link_to new_title_item_path do
+          = icon('fas', 'plus', class: "footer__plus--icon")
+      .footer__textbox
+        = form_for [@title, @item, @content], class: "footer__form" do |f|
+          = f.text_field :content, class: "footer--text", cols: 10, rows: 3
+          = f.submit "享受", class: "footer--submit"
