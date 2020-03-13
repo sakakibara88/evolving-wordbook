@@ -12,8 +12,7 @@ class ItemsController < ApplicationController
       else
         redirect_to root_path
       end
-      # request.remote_ip
-    elsif @@user[current_user.id] == nil                          #IPアドレスの登録がなければ！
+    elsif @@user[request.remote_ip] == nil                          #IPアドレスの登録がなければ！
       @@user[request.remote_ip][:page]  = 0
       @@user[request.remote_ip][:title] = @title
       @@users << @@user
