@@ -25,10 +25,19 @@ $(function(){
    }
 
   $(".header__search__form--text").on("keydown", function(e) {
-    var ref=e.target;
-    if(e.key === 'Enter' && (ref.type == 'text' || ref.type == 'radio' || ref.type == 'checkbox' || ref.type == 'password')){
+    if (e.keyCode !== 13) { return true;}
+        if ($(document.activeElement).prop("tagName") == "TEXTAREA"
+            && !$(document.activeElement).is(':disabled')
+            && !$(document.activeElement).attr('readonly')
+            )
+        {
+            return true;
+        }
+        if ($(document.activeElement).is('input[type="button"],input[type="submit"],a')) {
+            return true;
+        }
         return false;
-    }
+    
   });
   $('.header__search__form--text').on("keyup", function(){
     let input = $(".header__search__form--text").val();
