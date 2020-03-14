@@ -5,7 +5,7 @@ class ContentsController < ApplicationController
     @content         = Content.new
     @titles          = Title.all
     @items           = Item.where(items: {title_id: [@title]})
-    @contents        = @item.contents.includes(:user)
+    @contents        = @item.contents.includes(:user).joins(:goods).group(:id).order('count(content_id) DESC')
     @contents_ungood = @item.contents.includes(:user)
     @goods           = Good.where(content_id: @contents)
   end
