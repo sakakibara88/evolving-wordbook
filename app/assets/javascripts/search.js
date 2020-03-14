@@ -24,13 +24,6 @@ $(function(){
      search_list.append(html);
    }
 
-  $(".header__search__form--text").on("keydown", function(e) {
-    if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
-        return false;
-    } else {
-        return true;
-    }
-  });
   $('.header__search__form--text').on("keyup", function(){
     let input = $(".header__search__form--text").val();
     $.ajax({
@@ -40,7 +33,6 @@ $(function(){
       dataType: 'json'
     })
     .done(function(search){
-      console.log(search)
       $("#item-search-list").empty();
       if (search.item == "not-search");   // ""の処理
 
@@ -56,4 +48,11 @@ $(function(){
       }
     })
   });
+});
+$(".header__search__form--text").on("keydown", function(e) {
+  if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
+      return false;
+  } else {
+      return true;
+  }
 });
