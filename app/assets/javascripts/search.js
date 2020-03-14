@@ -24,20 +24,11 @@ $(function(){
      search_list.append(html);
    }
 
-  $(".header__search__form--text").on("keydown", function(e) {
-    if (e.keyCode !== 13) { return true;}
-        if ($(document.activeElement).prop("tagName") == "TEXTAREA"
-            && !$(document.activeElement).is(':disabled')
-            && !$(document.activeElement).attr('readonly')
-            )
-        {
-            return true;
-        }
-        if ($(document.activeElement).is('input[type="button"],input[type="submit"],a')) {
-            return true;
-        }
+  $("input").on("keydown", function(e) {
+    var ref=e.target;
+    if(e.key === 'Enter' && (ref.type == 'text' || ref.type == 'radio' || ref.type == 'checkbox' || ref.type == 'password')){
         return false;
-    
+    }
   });
   $('.header__search__form--text').on("keyup", function(){
     let input = $(".header__search__form--text").val();
