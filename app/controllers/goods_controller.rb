@@ -12,7 +12,7 @@ class GoodsController < ApplicationController
   def destroy
     @good            = Good.find_by(content_id: params[:content_id], user_id: current_user.id)
     @good.destroy
-    @contents        = @item.contents.includes(:user).joins(:goods).group(:content_id).order('count(content_id) DESC')
+    @contents        = @item.contents.includes(:user).joins(:goods).group(:id).order('count(content_id) DESC')
     @contents_ungood = @item.contents.includes(:user)
     @items           = Item.where(items: {title_id: [@title]})
     @goods           = Good.where(content_id: @contents)
