@@ -38,7 +38,7 @@
     -# -if goods.where(content_id: content).count == 0          #Good!数が0なら
     .content__comment
       .content__comment__text
-        = content.content
+        -# = content.content
       .content__comment__icon
         - if user_signed_in?
           - if current_user.already_good?(content)
