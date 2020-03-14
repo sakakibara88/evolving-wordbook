@@ -25,10 +25,9 @@ $(function(){
    }
 
   $(".header__search__form--text").on("keydown", function(e) {
-    if ((e.which && e.which === 13) || (e.keyCode && e.keyCode === 13)) {
+    var ref=e.target;
+    if(e.key === 'Enter' && (ref.type == 'text' || ref.type == 'radio' || ref.type == 'checkbox' || ref.type == 'password')){
         return false;
-    } else {
-        return true;
     }
   });
   $('.header__search__form--text').on("keyup", function(){
