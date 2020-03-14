@@ -15,7 +15,7 @@
       .header__search
         .header__search__form
           = form_for search_items_path, class: "header__search__for" do |f|
-            = f.text_area :item, class: "header__search__form--text", cols: 10, rows: 3, placeholder: "検索ワード"
+            = f.text_field :item, class: "header__search__form--text", cols: 10, rows: 3, placeholder: "検索ワード"
         #item-search-list
 
       .header__users
