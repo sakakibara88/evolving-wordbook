@@ -7,7 +7,7 @@ class Item < ApplicationRecord
     if search == ""
     else
       return Item.all() unless search
-      Item.where('item LIKE(?)', "#{search}%")
+      Item.where('item LIKE(?)', "%#{search}%")
     end
   end
 end
