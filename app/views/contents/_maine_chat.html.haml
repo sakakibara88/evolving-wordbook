@@ -7,9 +7,9 @@
     .item__content
       = @item.item
     .itme__icons
-      - unless @item == @items.last
-        = link_to title_items_path do
-          = icon('fas', 'angle-right', class: "item__icons--right")
+      -# - unless @item == @items.last
+      = link_to title_items_path do
+        = icon('fas', 'angle-right', class: "item__icons--right")
 
   .contentss
     = render partial: 'goods/good', locals: { contents: @contents, title: @title, item_id: @item, goods: @goods, contents_ungood: @contents_ungood}
