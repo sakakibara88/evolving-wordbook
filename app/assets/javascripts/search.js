@@ -1,6 +1,6 @@
 $(function(){
   let search_list = $("#item-search-list");
-
+ 
   function appendItem(item) {
     let html = `<div class = "list">
                   <ul class = "list__ul">

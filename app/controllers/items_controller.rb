@@ -12,19 +12,17 @@ class ItemsController < ApplicationController
       else
         redirect_to root_path
       end
+      
     elsif @@user[request.remote_ip] == nil                          #IPアドレスの登録がなければ！
       @@user[request.remote_ip][:page]  = 0
       @@user[request.remote_ip][:title] = @title
       @@users << @@user
       @item                             = @@user[request.remote_ip][:page]
       redirect_to title_item_contents_path(@title, @item)
-    elsif @@user[request.remote_ip][:title] == @title then          #タイトルが同じなら
 
-      if @items[@@user[request.remote_ip][:page] + 1]  == nil then  ##次の項目がなければ
-        @@user[request.remote_ip][:page]  = 0
-        @@user[request.remote_ip][:title] = @title
-        @item                             = @items[@@user[request.remote_ip][:page]]
-        redirect_to title_item_contents_path(@title, @item)
+    elsif @@user[request.remote_ip][:title] == @title then          #タイトルが同じなら
+      if @items[@@user[request.remote_ip][:page] + 1]  == nil then  ##次の項目がなければ単語を作成
+        redirect_to new_title_item_path(@title)
       else
         @@user[request.remote_ip][:page] += 1                       ##次の項目へ
         @item  = @items[@@user[request.remote_ip][:page]]
@@ -64,7 +62,6 @@ class ItemsController < ApplicationController
       end
     else
       @search = Item.search(params[:keyup])
-      # binding.pry
       respond_to do |f|
         f.html
         f.json
