@@ -49,8 +49,11 @@ class ItemsController < ApplicationController
 
   def create
     @item = @title.items.new(item_params)
-    @item.save
-    redirect_to title_item_contents_path(@title, @item)
+    if @item.save
+      redirect_to title_item_contents_path(@title, @item)
+    else
+      redirect_to new_title_item_path(@title)
+    end
   end
 
   def search

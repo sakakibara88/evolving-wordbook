@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20200309015620) do
+ActiveRecord::Schema.define(version: 20200408150622) do
 
   create_table "contents", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content",    limit: 50, default: "", null: false
@@ -37,7 +37,6 @@ ActiveRecord::Schema.define(version: 20200309015620) do
     t.integer  "user_id"
     t.datetime "created_at",                         null: false
     t.datetime "updated_at",                         null: false
-    t.index ["item"], name: "index_items_on_item", unique: true, using: :btree
     t.index ["title_id"], name: "index_items_on_title_id", using: :btree
     t.index ["user_id"], name: "index_items_on_user_id", using: :btree
   end
