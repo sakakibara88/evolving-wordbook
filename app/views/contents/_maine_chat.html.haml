@@ -7,7 +7,6 @@
     .item__content
       = @item.item
     .itme__icons
-      -# - unless @item == @items.last
       = link_to title_items_path do
         = icon('fas', 'angle-right', class: "item__icons--right")
 
